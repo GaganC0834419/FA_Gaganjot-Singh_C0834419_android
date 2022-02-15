@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FavouriteActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/ToolbarTheme">
+
+            <LinearLayout
+                android:id="@+id/menuImg"
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Favourite Places"
+                    android:textColor="@color/green" />
+
+
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:textSize="@dimen/_12sdp"
+        android:padding="@dimen/_7sdp"
+        android:gravity="center"
+        android:text="Swipe to delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/noData_ll"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/noData_img"
+            android:src="@drawable/ic_nodatafound"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="12sp"
+            android:id="@+id/noDataFound_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="We couldn't find any records." />
+    </LinearLayout>
+
+</LinearLayout>

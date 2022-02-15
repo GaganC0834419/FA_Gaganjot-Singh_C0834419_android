@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/white"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:theme="@style/ToolbarTheme">
+
+                <LinearLayout
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:layout_marginTop="3dp"
+                        android:layout_gravity="center"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Update"
+                        android:textColor="@color/green" />
+
+
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_below="@id/appBar"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:weightSum="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_weight="2.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/myMap"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".MainActivity" />
+
+                    <LinearLayout
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:id="@+id/addressLl"
+                        android:background="@drawable/edit_text_selector"
+                        android:weightSum="2"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:textSize="12sp"
+                            android:background="@android:color/transparent"
+                            android:layout_weight="1.7"
+                            android:padding="10dp"
+                            android:id="@+id/addressEt"
+                            android:singleLine="true"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/currentPositionIMg"
+                            android:padding="@dimen/_10sdp"
+                            android:layout_weight="0.3"
+                            android:src="@drawable/ic_address"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                        </ImageView>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:weightSum="2"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:layout_weight="1"
+                            android:id="@+id/mUpdateLocationBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/green"
+                            android:gravity="center"
+                            android:text="Update Location"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+
+
+
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
