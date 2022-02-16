@@ -3,6 +3,7 @@ package com.project.finalexam;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -157,7 +158,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 holder.mCardView.setBackgroundColor(Color.parseColor("#FFC4C0"));
             }else{
                 holder.mVisited.setText("Already Visited");
-                holder.mCardView.setBackgroundColor(Color.parseColor("#F1FFF3"));
+                holder.mCardView.setBackgroundColor(Color.parseColor("#D0FFD7"));
             }
 
 
@@ -173,22 +174,48 @@ public class FavouriteActivity extends AppCompatActivity {
             holder.mEditTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //setEditDialog(ledger);
+                    Intent intent=new Intent(FavouriteActivity.this,FavMapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("OBJ", ledger);
+                    intent.putExtras(bundle);
+                    intent.putExtra("TYPE","");
+                    startActivity(intent);
 
                 }
             });
 
-            holder.mFrontLayout.setOnClickListener(new View.OnClickListener() {
+            holder.mDirectionsTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String uri = "http://maps.google.com/maps?saddr=" + SharedPreference.getLatitude() + "," + SharedPreference.getLongitude() + "&daddr=" + ledger.getLat() + "," + ledger.getLng();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    intent.setPackage("com.google.android.apps.maps");
+                    startActivity(intent);
+                }
+            });
+
+            holder.mDistanceTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(FavouriteActivity.this,FavMapsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("OBJ", ledger);
                     intent.putExtras(bundle);
+                    intent.putExtra("TYPE","DIRECTIONS");
                     startActivity(intent);
-
+                }
+            });holder.mRestroTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(FavouriteActivity.this,FavMapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("OBJ", ledger);
+                    intent.putExtras(bundle);
+                    intent.putExtra("TYPE","NEARBY");
+                    startActivity(intent);
                 }
             });
+
 
             holder.mVisited.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -213,7 +240,7 @@ public class FavouriteActivity extends AppCompatActivity {
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView mAccountNameTv,mVisited;
-            TextView mDeleteTv;
+            TextView mDeleteTv,mDirectionsTv,mDistanceTv,mRestroTv;
             TextView mEditTv;
             View mFrontLayout;
             CardView mCardView;
@@ -225,6 +252,9 @@ public class FavouriteActivity extends AppCompatActivity {
                 mAccountNameTv = (TextView) itemView.findViewById(R.id.accountName_tv);
                 mVisited = (TextView) itemView.findViewById(R.id.mVisited);
                 mDeleteTv = (TextView) itemView.findViewById(R.id.delete_tv);
+                mDirectionsTv = (TextView) itemView.findViewById(R.id.mDirectionsTv);
+                mDistanceTv = (TextView) itemView.findViewById(R.id.mDistanceTv);
+                mRestroTv = (TextView) itemView.findViewById(R.id.mRestroTv);
                 mEditTv = (TextView) itemView.findViewById(R.id.edit_tv);
                 mFrontLayout = (FrameLayout) itemView.findViewById(R.id.frontLayout);
                 mCardView = itemView.findViewById(R.id.mCardView);

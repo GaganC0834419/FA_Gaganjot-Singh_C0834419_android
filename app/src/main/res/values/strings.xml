@@ -2,4 +2,8 @@
     <string name="app_name">FinalExam</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_fav_maps">FavMapsActivity</string>
+    <string name="mark_as_visited"><u>Mark As Visited</u></string>
+    <string name="get_directions"><u>Get Directions</u></string>
+    <string name="get_distance"><u>Get Distance</u></string>
+    <string name="get_nearby_restro_bars_cafe"><u>Get Nearby Restro,bars,cafe</u></string>
 </resources>

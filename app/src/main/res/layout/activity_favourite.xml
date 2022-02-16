@@ -50,7 +50,7 @@
         android:textSize="@dimen/_12sdp"
         android:padding="@dimen/_7sdp"
         android:gravity="center"
-        android:text="Swipe to delete"
+        android:text="Swipe item to delete or edit."
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

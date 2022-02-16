@@ -3,11 +3,11 @@
 <com.chauthai.swipereveallayout.SwipeRevealLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="@dimen/_10sdp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:mode="same_level"
-    app:dragEdge="right">
+    app:dragEdge="right"
+    android:layout_margin="@dimen/_3sdp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,7 +15,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/edit_tv"
             android:layout_width="70dp"
             android:layout_height="match_parent"
@@ -68,23 +67,72 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="---"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:weightSum="3"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:padding="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:id="@+id/mVisited"
+                            android:layout_gravity="center"
+                            android:textColor="@android:color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/mark_as_visited"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:padding="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:id="@+id/mDirectionsTv"
+                            android:textColor="@android:color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/get_directions"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <TextView
+                            android:padding="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:id="@+id/mDistanceTv"
+                            android:textColor="@android:color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/get_distance"
+                            android:textSize="@dimen/_13sdp" />
+
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:gravity="center"
-                        android:id="@+id/mVisited"
-                        android:layout_gravity="center"
+                        android:padding="@dimen/_3sdp"
+                        android:id="@+id/mRestroTv"
                         android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="Mark As Visited"
-                        android:textSize="18sp" />
+                        android:text="@string/get_nearby_restro_bars_cafe"
+                        android:textSize="@dimen/_13sdp" />
+
+
+
+
+
 
 
                 </LinearLayout>
-
 
 
 
@@ -96,6 +144,8 @@
         </LinearLayout>
 
     </FrameLayout>
+
+
 
 
 

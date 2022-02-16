@@ -121,6 +121,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp">
 
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:text="You can update your favourite place by searching in the search box or by dragging the marker. After that click on update button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    </TextView>
+
 
 
                     <LinearLayout

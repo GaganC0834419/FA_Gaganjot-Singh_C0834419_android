@@ -34,6 +34,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -171,6 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         TextView mTerrain = view.findViewById(R.id.mTerrain);
         TextView mSatellite = view.findViewById(R.id.mSatellite);
         TextView mRoadmap = view.findViewById(R.id.mRoadmap);
+        TextView mNone = view.findViewById(R.id.mNone);
 
         mHybrid.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,6 +206,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+        mNone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+                alertDialog.dismiss();
+
+            }
+        });
 
 
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //this line MUST BE BEFORE setContentView
@@ -233,16 +243,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
             public void onMarkerDragStart(Marker marker) {
-                // TODO Auto-generated method stub
                 Log.e("Drag Start", marker.getPosition().latitude + "..." + marker.getPosition().longitude);
             }
 
             @Override
             public void onMarkerDrag(Marker marker) {
-                // TODO Auto-generated method stub
-                //Log.e("Drag End",marker.getPosition().latitude+"..."+marker.getPosition().longitude);
 
-                //googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
             }
 
             @Override
@@ -256,20 +262,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lat = marker.getPosition().latitude;
                 lng = marker.getPosition().longitude;
 
-                mMap.clear();
+                mMap.addMarker(new MarkerOptions()
+                        .position(marker.getPosition())
+                        .title(getCompleteAddressString(lat,lng))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+                saveToFavourites(getCompleteAddressString(lat, lng),lat,lng);
+
+                /*mMap.clear();
                 MarkerOptions markerOptions = new MarkerOptions().position(marker.getPosition()).title("I am here!").draggable(true);
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
                 mMap.addMarker(markerOptions);
 
                 saveToFavourites(getCompleteAddressString(marker.getPosition().latitude, marker.getPosition().longitude),lat,lng);
-
+*/
             }
         });
 
         //Initialise Places Api
         Places.initialize(MapsActivity.this, getString(R.string.google_maps_key));
         mAddressEt.setFocusable(false);
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                double lat = latLng.latitude;
+                double lng = latLng.longitude;
+                mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title(getCompleteAddressString(lat,lng))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+                saveToFavourites(getCompleteAddressString(lat, lng),lat,lng);
+
+
+            }
+        });
 
     }
 
@@ -325,7 +354,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.v("Longitude is", "" + queriedLocation.longitude);
 
             mMap.clear();
-            MarkerOptions markerOptions = new MarkerOptions().position(place.getLatLng()).title(place.getAddress()).draggable(true);
+            MarkerOptions markerOptions = new MarkerOptions().position(place.getLatLng()).title(place.getAddress()).draggable(false);
             mMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15));
             mMap.addMarker(markerOptions);

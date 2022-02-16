@@ -39,7 +39,18 @@
         android:padding="@dimen/_7sdp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="TYPE ROADMAP"
+        android:text="TYPE NORMAL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/mNone"
+        android:padding="@dimen/_7sdp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="TYPE NONE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
